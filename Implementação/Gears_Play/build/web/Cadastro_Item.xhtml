@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="Modelo_Tela.xhtml">
+    <h:form>
+        <p:fieldset legend = "Itens">
+            <p:panelGrid columns = "2">
+                <h:outputLabel value="Nome do Produto"></h:outputLabel>
+                <p:inputText value="#{itemControler.item.nome}"></p:inputText>
+
+                <h:outputLabel value="Valor"></h:outputLabel>
+                <p:inputText value="#{itemControler.item.valor}"></p:inputText>
+
+                <h:outputLabel value="Desenvolvedor"></h:outputLabel>
+                <p:inputText value="#{itemControler.item.desenvolvedor}"></p:inputText>
+            </p:panelGrid>
+            
+            <br/>
+
+            <p:splitButton value="Adicionar" action="#{itemControler.adicionar()}" update="@form" icon="ui-icon-disk">
+                <p:menuitem value="Listar" action="#{itemControler.listagem()}" update="@form" icon="ui-icon-newwin"/>
+                <p:menuitem value="Editar" action="#{itemControler.editar(item)}" icon="ui-icon-arrowrefresh-1-w"/>
+                <p:menuitem value="Excluir" icon="ui-icon-close"/>
+            </p:splitButton>
+            
+            <hr/>
+
+            <p:dataTable value="#{itemControler.listaItens}" var="listar">
+                <p:column headerText="Código do Item" sortBy="#{listar.cod_item}"> 
+                    <h:outputText value="#{listar.cod_item}"></h:outputText>
+                </p:column>
+
+                <p:column headerText="Produto" sortBy="#{listar.nome}"> 
+                    <h:outputText value="#{listar.nome}"></h:outputText>
+                </p:column>
+
+                <p:column headerText="Valor" sortBy="#{listar.valor}"> 
+                    <h:outputText value="#{listar.valor}"></h:outputText>
+                </p:column>
+
+                <p:column headerText="Desenvolvedor" sortBy="#{listar.desenvolvedor}"> 
+                    <h:outputText value="#{listar.desenvolvedor}"></h:outputText>
+                </p:column>       
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+
